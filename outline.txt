@@ -1,0 +1,18 @@
+Home
+Store
+    Phones
+    Tablets
+    Laptops
+    Desktops
+    Monitors
+    Accessories
+    Peripherals
+Support
+
+Contact
+
+Feedback
+    Feedback Form
+
+Cart(number of items here)
+    Checkout Form
