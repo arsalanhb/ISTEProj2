@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store | Orange.com</title>
+
+
+    <style>
+                /* This is for the Header, Nav, Aside, Main - Didn't make root variables, You (Arasalan/Yerk) can change them */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 25vh;
+            background-color: orange    ;
+
+        }
+
+        nav ul{
+
+            display: flex;
+            flex-direction: row;
+            gap: 3rem;
+
+            justify-content: center;
+            align-items: center;
+
+            height: 10vh;
+            background-color: gray;
+        }
+
+        nav ul li{
+            list-style: none;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+        }
+
+        div.content{
+            
+            display: flex;
+            gap: 3rem;
+
+            line-height: 1.5;
+
+            font-size: 1.5rem;
+
+            margin-top: 3rem;
+            margin-left: 3rem;
+
+        }
+
+        aside{
+            width: 20vw;
+            height: auto;
+            text-align: center;
+
+            border-radius: 1rem;
+            border: solid 1px black;
+
+        }
+        aside p{
+            text-align: center;
+            
+        }
+
+        aside h3{
+            font-size:2rem;
+        }
+
+        footer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 15vh;
+            margin-top: 3rem;
+            background-color: orange;
+
+            flex-wrap: wrap;
+        }
+
+/* The Products page styling (main)------------------------------------------------------------------------------ */
+
+            
+            main h3{  /** for Mobile Title**/
+                padding-left: 0.75rem;
+            }
+
+/*Product cards - Araslan, you can improve the design and adjust the positionings , while keeping the structure same*/
+
+            .product-box { /*Using Grid*/
+                display: grid;
+                grid-template-columns: repeat(4, 1fr); /* 4 columns. Displaying 4 products in a row*/
+                gap: 2rem;
+                
+                padding: 2rem;
+            }
+
+            .product-card {
+                display: grid;
+                grid-template-rows: auto auto; /* Defining row heights */
+
+                gap: 1rem;
+                padding: 1rem;
+
+            
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-card img {
+                
+                width: 100%;
+                height: 100%;
+
+                object-fit: contain; /*To display the whole product image in a card*/
+
+                border-radius: 8px;
+                
+            }
+
+            .product-card h1 { /*Product name*/
+                font-size: 2rem;
+                margin: 0;
+               
+            }
+
+            .product-card p { /*Product price*/
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin: 0;
+                
+            }
+
+            .modal-overlay{
+                position: fixed; 
+                display: none; /*IMP*/
+
+                top: 0;
+                left: 0;
+                
+                width: 100%;
+                height: 100%;
+                    
+                justify-content: center;
+                align-items: center;
+                    
+                z-index: 1000;
+                
+                background-color: rgba(0, 0, 0, 0.7);  /* Darkening the background overlay */
+
+            }
+
+            /*Once the Product Card is clicked, the previous properties get activated and modal overlay pops up*/ 
+            .modal-overlay.active{
+                display: flex; 
+            }
+
+            .modal-content-card {
+
+                position: relative; /*Imp for close btn*/
+
+/*Arsalan you can adjust the design---------------------------------------*/
+                background-color: white;
+                border-radius: 12px;
+                padding: 40px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            }/*------------------------------------------------------------------------------*/
+
+            .close-btn{
+                position: absolute;
+                cursor: pointer;
+
+                top: 15px;
+                right: 20px;
+
+                font-size: 30px;
+                color: #666;
+                
+                background: none;
+                border: none;
+
+                
+            }
+
+            .close-btn:hover {
+                color: #333;
+            }
+/*Modal/Popup Card - Arsalan you can adjust the positioning, sizes and designing here aswell---------------------------------------------------------------*/
+            .modal-overlay img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                margin: 0 auto 20px;
+                display: block;
+            }
+
+            .modal-name h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .modal-price p {
+                font-size: 24px;
+                color: #4CAF50;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .modal-paragraph p {
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            .modal-features ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .modal-features li {
+                padding: 8px 0;
+                color: #555;
+                border-bottom: 1px solid #eee;
+            }
+
+            .add-to-cart {
+                width: 100%;
+                padding: 15px;
+                background-color: orange;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
+            .add-to-cart:hover {
+                background-color: #ff8c00;
+            }
+/*-----------------------------------------------------------------------------------------------*/
+/* BASIC Position, border and margin only (nav buttons at the bottom of the page)*/
+            .nav-btn{
+                display: flex;
+                gap:0;
+
+                justify-content: center;
+            }
+            .nav-btn button{
+                border-radius: 0;
+                margin: 0;    
+            }
+
+            .btn-1{
+                border-left: none;
+
+            }
+            .btn-2{
+                border-left: none;
+                border-right: none;
+            }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="ORANGE" width="200" height="200">
+        <p>PLACEHOLDER</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>NOTE:THERE MIGHT BE MORE LINKS</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- We are wrapping the main content and side bar, because we don't use float. -->
+        
+        <aside>
+            <h3>More Stuff(?)</h3>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+
+        </aside>
+
+        <main>
+           
+            <h3>Laptops & PC</h3>
+
+            <div class="product-box">
+                
+                <div class="product-card" onclick="openModal(0)">
+                    
+                    <img src="ph13.png" alt="phone1" width="200" height="200">
+                    
+                    <h1>Asus Zenbook 14 (2025) Ultrabook </h1>
+                    <p>AED 4,499</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(1)">
+                    <img src="ph14.png" alt="phone1">
+                    <h1>ASUS Zenbook S 14 OLED </h1>
+                    <p>AED 5,999</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(2)">
+                    <img src="ph15.png" alt="phone1">
+                    <h1>ASUS Vivobook 15 OLED  </h1>
+                    <p>AED 3,099</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(3)">
+                    <img src="ph16.png" alt="phone1">
+                    <h1> Lenovo Yoga Slim 7 </h1>
+                    <p>AED 3,698.99</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(4)">
+                    <img src="ph17.png" alt="phone1">
+                    <h1>Lenovo Yoga Pro 9 </h1>
+                    <p>AED 10,499</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(5)">
+                    <img src="ph18.png" alt="phone1">
+                    <h1>Lenovo ThinkBook 16 </h1>
+                    <p>AED 3,799</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(6)">
+                    <img src=".png" alt="phone1">
+                    <h1>Apple MacBook Air M4 </h1>
+                    <p>AED 6,399</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(7)">
+                    <img src="ph20.png" alt="phone1">
+                    <h1>Apple MacBook Air 15-inch</h1>
+                    <p>AED 5,353</p>
+                </div>
+            
+
+            <!-- Creating a place holder Content for the modals, we will initialize it in side our Script tag-->
+            <div id="modal" class="modal-overlay">
+                    <div class="modal-content-card">
+                        <button type="button" id="closeBtn" class="close-btn">x</button>
+                        
+                        <img id="modalImage" src="ph1.png" alt="phone1">
+                        
+                        <div id="modalName" class="modal-name">
+                            <h1>Asus Zenbook 14 (2025) Ultrabook</h1>
+                        </div>
+
+                        <div id="modalPrice" class="modal-price">
+                            <p>AED 4,499</p>
+                        </div>
+
+                        <div id="modalParagraph" class="modal-paragraph">
+                            <p>The iPhone Air blends a feather-light titanium frame with Apple’s A19 Pro performance and a bright 6.5'' 
+                                ProMotion OLED</p>
+                        </div>
+                        
+                        <div id="modalFeatures" class="modal-features">
+                        <ul>
+                            <p>Other Features</p>
+                            <li>Color: White</li>
+                            <li>Storage Size: 1TB SSD</li>
+                            <li>RAM: 16GB</li>
+                            <li>Screen Size: 14 inches</li>
+                            <li>OS Version: Windows 11 Home</li>
+                            <li>Processor: Intel Core Ultra 7</li>
+                        </ul>
+                        </div>
+
+                        <button type="button" id="addToCart" class="add-to-cart">Add to Cart</button>
+                    </div>
+            </div>
+
+            <script>
+                //Laptops
+                const products = [ { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "ASUS Zenbook S 14 OLED (2024) ", 
+                            price: "5,999", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "Zumaia Grey",
+                                storageSize: "1TB SSD",
+                                ram: "32 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "ASUS Vivobook 15 OLED ", 
+                            price: "3,099", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "Transparent Silver",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "15.6 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core i9"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: " Lenovo Yoga Slim 7 ", 
+                            price: "3,698.99", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "Grey",
+                                storageSize: "1TB SSD",
+                                ram: "32 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Lenovo Yoga Pro 9 ", 
+                            price: "10,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "Grey",
+                                storageSize: "2 TB SSD",
+                                ram: "64 GB",
+                                screenSize: "16 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 9"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Lenovo ThinkBook 16 ", 
+                            price: "3,799", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "Arctic Grey",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "16 Inches",
+                                os:"Windows 11 Pro ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        },
+                        { 
+                            image: "ph13.png",
+                            name: "Asus Zenbook 14 (2025) Ultrabook", 
+                            price: "4,499", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                storageSize: "1TB SSD",
+                                ram: "16 GB",
+                                screenSize: "14 Inches",
+                                os:"Windows 11 Home ",
+                                processor: "Intel Core Ultra 7"
+                            }
+                        }
+
+                        
+                        ];
+
+                                
+
+                      
+
+                const modal = document.getElementById("modal");
+                const closeBtn = document.getElementById("closeBtn");
+
+                function openModal(productIndex){
+                    const product = products[productIndex];
+
+                    document.getElementById('modalImage').src = product.image;
+                    document.getElementById('modalImage').alt = product.name;
+
+                    document.getElementById('modalName').textContent = product.name;
+                    document.getElementById('modalPrice').textContent = 'AED ' + product.price;
+                    document.getElementById('modalParagraph').textContent = product.paragraph;
+                    //document.getElementById('modalFeatures').textContent = product.features;
+
+                    const featuresHTML = `
+                        <ul>
+                            <p>Other Features</p>
+                            <li>Color: ${product.features.color}</li>
+                            <li>Storage Size: ${product.features.storageSize}</li>
+                            <li>RAM: ${product.features.ram}</li>
+                            <li>Screen Size: ${product.features.screenSize}</li>
+                            <li>OS: ${product.features.os}</li>
+                            <li>Processor: ${product.features.processor}</li>
+                            
+                        </ul>`;
+
+                    document.getElementById('modalFeatures').innerHTML = featuresHTML;
+                    
+
+                    modal.classList.add('active');
+
+                }
+            closeBtn.onclick = function() {
+                    modal.classList.remove('active');
+                    }
+
+            </script>
+
+            <!-- Adding nav btn at the bottom -->
+
+            <div class="nav-btn">
+                <a href="#" style="text-decoration: none;">
+                    <button type="button">← Previous</button>
+                </a>
+
+                <a href="#" style="text-decoration: none;">
+                    <button type="button" class="btn-1">1</button>
+                </a>
+
+                <a href="#" style="text-decoration: none;">
+                    <button type="button" class="btn-2">2</button>
+                </a>
+                
+                <a href="#" style="text-decoration: none;">
+                    <button type="button" href="mobile_2.html">Next →</button>
+                </a>
+            </div>
+
+        </main>
+
+    </div>
+    <footer>
+        &copy; 2025 Project2
+    </footer>
+</body>
+</html>
