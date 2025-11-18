@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store | Orange.com</title>
+
+
+    <style>
+        /* This is for the Header, Nav, Aside, Main - Didn't make root variables */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 25vh;
+            background-color: orange    ;
+
+        }
+
+        nav ul{
+
+            display: flex;
+            flex-direction: row;
+            gap: 3rem;
+
+            justify-content: center;
+            align-items: center;
+
+            height: 10vh;
+            background-color: gray;
+        }
+
+        nav ul li{
+            list-style: none;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+        }
+
+        div.content{
+            
+            display: flex;
+            gap: 3rem;
+
+            line-height: 1.5;
+
+            font-size: 1.5rem;
+
+            margin-top: 3rem;
+            margin-left: 3rem;
+
+        }
+
+        aside{
+            width: 20vw;
+            height: auto;
+            text-align: center;
+
+            border-radius: 1rem;
+            border: solid 1px black;
+
+        }
+        aside p{
+            text-align: center;
+            
+        }
+
+        aside h3{
+            font-size:2rem;
+        }
+
+        footer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 15vh;
+            margin-top: 3rem;
+            background-color: orange;
+
+            flex-wrap: wrap;
+        }
+
+/* The Products page styling (main)------------------------------------------------------------------------------ */
+
+            main h3{
+                padding-left: 0.75rem;
+            }
+
+
+            .product-box {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr); /* 4 columns */
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .product-card {
+                display: grid;
+                grid-template-rows: 250px auto auto 1fr auto; /* Define row heights */
+                /* Or use named areas: */
+                grid-template-areas:
+                    "image"
+                    "title"
+                    "price";
+                gap: 1rem;
+                padding: 1rem;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+
+            .product-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+                /* grid-area: image; */ /* If using named areas */
+            }
+
+            .product-card h1 {
+                font-size: 2rem;
+                margin: 0;
+                /* grid-area: title; */
+            }
+
+            .product-card p {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin: 0;
+                /* grid-area: price; */
+            }
+
+            .modal-overlay{
+                position: fixed;
+                display: none;
+
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);  /* Darkening the background overlay */
+                    
+                justify-content: center;
+                align-items: center;
+                    
+                z-index: 1000;
+
+            }
+
+            .modal-overlay.active{
+                display: flex;
+            }
+
+            .modal-content-card {
+                background-color: white;
+                border-radius: 12px;
+                padding: 40px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .close-btn{
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+                cursor: pointer;
+                background: none;
+                border: none;
+                color: #666;
+            }           
+            .close-btn:hover {
+                color: #333;
+            }
+
+            .modal-overlay img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                margin: 0 auto 20px;
+                display: block;
+            }
+
+            .modal-name h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .modal-price p {
+                font-size: 24px;
+                color: #4CAF50;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .modal-paragraph p {
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            .modal-features ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .modal-features li {
+                padding: 8px 0;
+                color: #555;
+                border-bottom: 1px solid #eee;
+            }
+
+            .add-to-cart {
+                width: 100%;
+                padding: 15px;
+                background-color: orange;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
+            .add-to-cart:hover {
+                background-color: #ff8c00;
+            }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="ORANGE" width="200" height="200">
+        <p>PLACEHOLDER</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>NOTE:THERE MIGHT BE MORE LINKS</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- We are wrapping the main content and side bar, because we don't use float. -->
+        
+        <aside>
+            <h3>More Stuff(?)</h3>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+
+        </aside>
+
+        <main>
+           
+            <h3>Mobiles</h3>
+
+            <div class="product-box">
+                
+                <div class="product-card" onclick="openModal(0)">
+                    
+                    <img src="ph13.png" alt="phone1" width="200" height="200">
+                    
+                    <h1>Nothing Phone (3) </h1>
+                    <p>AED 2,899</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(1)">
+                    <img src="ph14.png" alt="phone1">
+                    <h1>Oppo Reno 14 Pro </h1>
+                    <p>AED 2,449</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(2)">
+                    <img src="ph15.png" alt="phone1">
+                    <h1>Motorola Razr 60 Ultra </h1>
+                    <p>AED 3,499</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(3)">
+                    <img src="ph16.png" alt="phone1">
+                    <h1>Motorola G35 </h1>
+                    <p>AED 5,999</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(4)">
+                    <img src="ph17.png" alt="phone1">
+                    <h1>Samsung Galaxy Z Flip7 </h1>
+                    <p>AED 2,943</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(5)">
+                    <img src="ph18.png" alt="phone1">
+                    <h1>Infinix HOT 50 Pro</h1>
+                    <p>AED 635.55</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(6)">
+                    <img src="ph19.png" alt="phone1">
+                    <h1>Infinix Note 40 Pro+</h1>
+                    <p>AED 879.55</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(7)">
+                    <img src="ph20.png" alt="phone1">
+                    <h1>Xiaomi Redmi Note 14</h1>
+                    <p>AED 995</p>
+                </div>
+            
+
+            <!-- Creating a place holder Content for the modals, we will initialize it in side our Script tag-->
+            <div id="modal" class="modal-overlay">
+                    <div class="modal-content-card">
+                        <button type="button" id="closeBtn" class="close-btn">x</button>
+                        
+                        <img id="modalImage" src="ph1.png" alt="phone1">
+                        
+                        <div id="modalName" class="modal-name">
+                            <h1>Apple iPhone 17 Pro Max</h1>
+                        </div>
+
+                        <div id="modalPrice" class="modal-price">
+                            <p>AED 5,099</p>
+                        </div>
+
+                        <div id="modalParagraph" class="modal-paragraph">
+                            <p>The iPhone Air blends a feather-light titanium frame with Apple’s A19 Pro performance and a bright 6.5'' 
+                                ProMotion OLED</p>
+                        </div>
+                        
+                        <div id="modalFeatures" class="modal-features">
+                        <ul>
+                            <p>Other Features</p>
+                            <li>Color: Cosmic Orange</li>
+                            <li>Internal Memory: 256 GB</li>
+                            <li>RAM: 12GB</li>
+                            <li>Screen Size: 6.9 in</li>
+                            <li>OS Version: iOS 26</li>
+                            <li>CPU: 6‑core CPU</li>
+                        </ul>
+                        </div>
+
+                        <button type="button" id="addToCart" class="add-to-cart">Add to Cart</button>
+                    </div>
+            </div>
+
+            <script>
+
+                const products = [ { 
+                            image: "ph13.png",
+                            name: "Nothing Phone (3)", 
+                            price: "2,899", 
+                            paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
+                            features: {
+                                color: "White",
+                                internalMemory: "512 GB",
+                                ram: "16 GB",
+                                screenSize: "6.67 in",
+                                osVersion: "Nothing OS 3.5",
+                                cpu: "Octa-core"
+                            }
+                        },
+                        { 
+                            image: "ph14.png",
+                            name: "Oppo Reno 14 Pro", 
+                            price: "2,449", 
+                            paragraph: "The Reno 14 Pro 5G delivers a refined visual experience with its curved high-refresh screen, versatile triple-camera system, and a long-lasting 6,200 mAh battery", 
+                            features: {
+                                color: "Opal White",
+                                internalMemory: "512 GB",
+                                ram: "12 GB",
+                                screenSize: "6.83 in",
+                                osVersion: "ColorOS 15.0",
+                                cpu: "Octa-core"
+                            }
+                        },
+                        { 
+                            image: "ph15.png",
+                            name: "Motorola Razr 60 Ultra", 
+                            price: "3,499", 
+                            paragraph: "This high-end flip phone combines a smooth, ultra-fast 165 Hz pOLED display with powerful performance (Snapdragon 8 Elite) and premium multi-lens cameras", 
+                            features: {
+                                color: "Green",
+                                internalMemory: "512 GB",
+                                ram: "16 GB",
+                                screenSize: "7 in",
+                                osVersion: "Android 15",
+                                cpu: "Octa-core"
+                            }
+                        },
+                        { 
+                            image: "ph16.png",
+                            name: "Motorola G35", 
+                            price: "1499", 
+                            paragraph: "The G35 5G packs a 120 Hz display and a large 50 MP camera into a budget-friendly, stylish package, perfect for users who want a reliable 5G phone with good performance", 
+                            features: {
+                                color: "Green",
+                                internalMemory: "128 GB",
+                                ram: "8 GB",
+                                screenSize: "6.72 in",
+                                osVersion: "Android 14",
+                                cpu: "Octa-Core"
+                            }
+                        },
+                        { 
+                            image: "ph17.png",
+                            name: "Samsung Galaxy Z Flip7", 
+                            price: "2,943", 
+                            paragraph: "The Z Flip7 gives you a premium folding smartphone experience and a full-size screen that folds into your pocket, 5G performance, and a solid camera setup.", 
+                            features: {
+                                color: "Black",
+                                internalMemory: "256 GB",
+                                ram: "8 GB",
+                                screenSize: "6.7 in",
+                                osVersion: "Android 14",
+                                cpu: "Deca-Core"
+                            }
+                        },
+                        { 
+                            image: "ph18.png",
+                            name: "Infinix HOT 50 Pro", 
+                            price: "635.55", 
+                            paragraph: "The HOT 50 Pro is perfect if you want a budget-friendly phone with large storage for apps, photos, and media and all in a lightweight, sleek black body with smooth performance over 4G.", 
+                            features: {
+                                color: "Black",
+                                internalMemory: "256 GB",
+                                ram: "8 GB",
+                                screenSize: "6.8 in",
+                                osVersion: "Android 14",
+                                cpu: "Octa-Core"
+                            }
+                        },
+                        { 
+                            image: "ph19.png",
+                            name: "Infinix Note 40 Pro+", 
+                            price: "879.55", 
+                            paragraph: "The Note 40 Pro+ is built for power users and creators as it offers lightning-fast charging, a big and smooth display, strong 5G performance, and a super-high-resolution 108 MP camera.", 
+                            features: {
+                                color: "Obsidian/Black",
+                                internalMemory: "256 GB",
+                                ram: "12 GB",
+                                screenSize: "6.78 in",
+                                osVersion: "XOS 14",
+                                cpu: "Octa-core"
+                            }
+                        },  
+                        {   
+                            image: "ph20.png",
+                            name: "Xiaomi Redmi Note 14 Pro", 
+                            price: "995", 
+                            paragraph: "The Redmi Note 14 Pro is a feature-packed mid-range smartphone offering a stunning 6.67'' AMOLED display, a powerful 200 MP AI camera system, and smooth performance with the Dimensity 7300 Ultra chip", 
+                            features: {
+                                color: "White/Wave Pattern",
+                                internalMemory: "512 GB",
+                                ram: "12 GB",
+                                screenSize: "6.67 in",
+                                osVersion: "Android 14",
+                                cpu: "Octa-core"
+                            }
+                        }];
+
+                                
+
+                      
+
+                const modal = document.getElementById("modal");
+                const closeBtn = document.getElementById("closeBtn");
+
+                function openModal(productIndex){
+                    const product = products[productIndex];
+
+                    document.getElementById('modalImage').src = product.image;
+                    document.getElementById('modalImage').alt = product.name;
+
+                    document.getElementById('modalName').textContent = product.name;
+                    document.getElementById('modalPrice').textContent = 'AED ' + product.price;
+                    document.getElementById('modalParagraph').textContent = product.paragraph;
+                    //document.getElementById('modalFeatures').textContent = product.features;
+
+                    const featuresHTML = `
+                        <ul>
+                            <p>Other Features</p>
+                            <li>Color: ${product.features.color}</li>
+                            <li>Internal Memory: ${product.features.internalMemory}</li>
+                            <li>RAM: ${product.features.ram}</li>
+                            <li>Screen Size: ${product.features.screenSize}</li>
+                            <li>OS Version: ${product.features.osVersion}</li>
+                            <li>CPU: ${product.features.cpu}</li>
+                            
+                        </ul>`;
+
+                    document.getElementById('modalFeatures').innerHTML = featuresHTML;
+                    
+
+                    modal.classList.add('active');
+
+                }
+            closeBtn.onclick = function() {
+                    modal.classList.remove('active');
+                    }
+
+            </script>
+        </main>
+
+    </div>
+    <footer>
+        &copy; 2025 Project2
+    </footer>
+</body>
+</html>
