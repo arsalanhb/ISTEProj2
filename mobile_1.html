@@ -97,16 +97,29 @@
             }
 
 
-            .product-box{
+            .product-box {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-                gap: 3rem 1.5rem;
-                padding: 1rem;
-
-                margin-right: 1rem;
+                grid-template-columns: repeat(4, 1fr); /* 4 columns */
+                gap: 2rem;
+                padding: 2rem;
             }
 
-            .product-card{
+            .product-card {
+                display: grid;
+                grid-template-rows: 250px auto auto 1fr auto; /* Define row heights */
+                /* Or use named areas: */
+                grid-template-areas:
+                    "image"
+                    "title"
+                    "price";
+                gap: 1rem;
+                padding: 1rem;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* .product-card{
 
                 background-color: rgb(233, 233, 233);
                 border-radius: 5px;
@@ -115,6 +128,27 @@
 
                 text-align: center;
             
+            } */
+
+            .product-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+                /* grid-area: image; */ /* If using named areas */
+            }
+
+            .product-card h1 {
+                font-size: 2rem;
+                margin: 0;
+                /* grid-area: title; */
+            }
+
+            .product-card p {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin: 0;
+                /* grid-area: price; */
             }
 
             .modal-overlay{
@@ -257,81 +291,83 @@
             <div class="product-box">
                 
                 <div class="product-card" onclick="openModal(0)">
-                    <img src="p1.png" alt="phone1">
+                    
+                    <img src="ph1.png" alt="phone1" width="200" height="200">
+                    
                     <h1>Apple iPhone 17 Pro Max</h1>
-                    <p>AED 5000</p>
+                    <p>AED 5,000</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(1)">
-                    <img src="p1.png" alt="phone1">
+                    <img src="ph2.png" alt="phone1">
                     <h1>Apple iPhone 17 Pro</h1>
-                    <p>AED 5000</p>
+                    <p>AED 4,699</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(2)">
-                    <img src="p1.png" alt="phone1">
+                    <img src="ph3.png" alt="phone1">
                     <h1>Apple iPhone 17 Pro Max Silver</h1>
-                    <p>AED 5000</p>
+                    <p>AED 8,499</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(3)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph4.png" alt="phone1">
+                    <h1>Apple iPhone Air </h1>
+                    <p>AED 5,999</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(4)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph5.png" alt="phone1">
+                    <h1>Apple iPhone Air Space Black </h1>
+                    <p>AED 5,149</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(5)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="p6.png" alt="phone1">
+                    <h1>Apple iPhone 16 Pro Max</h1>
+                    <p>AED 5,399</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(6)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph7.png" alt="phone1">
+                    <h1>Apple iPhone 16 Plus </h1>
+                    <p>AED 4,199</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(7)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph8.png" alt="phone1">
+                    <h1>Samsung Galaxy S25 Ultra </h1>
+                    <p>AED 3,099</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(8)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph9.png" alt="phone1">
+                    <h1>Samsung Galaxy S25+ </h1>
+                    <p>AED 3,500</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(9)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph10.png" alt="phone1">
+                    <h1>Samsung Galaxy Z Fold 4 </h1>
+                    <p>AED 7,249</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(10)">
-                    <img src="p1.png" alt="phone1">
-                    <h1>iPhone 15 pro</h1>
-                    <p>AED 5000</p>
+                    <img src="ph11.png" alt="phone1">
+                    <h1>Huawei Pura 80 Ultra </h1>
+                    <p>AED 5,099</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(11)">
-                    <img src="p1.png" alt="phone1">
+                    <img src="ph12.png" alt="phone1">
                     <h1>Huawei Pura 80 Ultra Golden</h1>
-                    <p>AED 5000</p>
+                    <p>AED 4,199</p>
                 </div>
             </div>
 
@@ -499,7 +535,7 @@
                             }
                         },
                         { 
-                            image: "ph1.png",
+                            image: "ph10.png",
                             name: "Samsung Galaxy Z Fold 4", 
                             price: "7,249", 
                             paragraph: "The Z Fold4 transforms between phone and tablet layouts for multitasking and large-screen productivity", 
