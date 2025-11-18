@@ -105,8 +105,7 @@
 
             .product-card {
                 display: grid;
-                grid-template-rows: 250px auto auto 1fr auto; /* Define row heights */
-                /* Or use named areas: */
+                grid-template-rows: 250px auto auto 1fr auto; 
                 grid-template-areas:
                     "image"
                     "title"
@@ -124,7 +123,6 @@
                 height: 100%;
                 object-fit: cover;
                 border-radius: 8px;
-                /* grid-area: image; */ /* If using named areas */
             }
 
             .product-card h1 {
@@ -248,7 +246,7 @@
 <body>
 
     <header>
-        <img src="logo.png" alt="ORANGE" width="200" height="200">
+        <img src="assets/images/logo.png" alt="ORANGE" width="200" height="200">
         <p>PLACEHOLDER</p>
     </header>
 
@@ -281,51 +279,51 @@
                 
                 <div class="product-card" onclick="openModal(0)">
                     
-                    <img src="ph13.png" alt="phone1" width="200" height="200">
+                    <img src="assets/images/ph13.png" alt="phone1" width="200" height="200">
                     
                     <h1>Nothing Phone (3) </h1>
                     <p>AED 2,899</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(1)">
-                    <img src="ph14.png" alt="phone1">
+                    <img src="assets/images/ph14.png" alt="phone1">
                     <h1>Oppo Reno 14 Pro </h1>
                     <p>AED 2,449</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(2)">
-                    <img src="ph15.png" alt="phone1">
+                    <img src="assets/images/ph15.png" alt="phone1">
                     <h1>Motorola Razr 60 Ultra </h1>
                     <p>AED 3,499</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(3)">
-                    <img src="ph16.png" alt="phone1">
+                    <img src="assets/images/ph16.png" alt="phone1">
                     <h1>Motorola G35 </h1>
                     <p>AED 5,999</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(4)">
-                    <img src="ph17.png" alt="phone1">
+                    <img src="assets/images/ph17.png" alt="phone1">
                     <h1>Samsung Galaxy Z Flip7 </h1>
                     <p>AED 2,943</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(5)">
-                    <img src="ph18.png" alt="phone1">
+                    <img src="assets/images/ph18.png" alt="phone1">
                     <h1>Infinix HOT 50 Pro</h1>
                     <p>AED 635.55</p>
                 </div>
 
                 
                 <div class="product-card" onclick="openModal(6)">
-                    <img src="ph19.png" alt="phone1">
+                    <img src="assets/images/ph19.png" alt="phone1">
                     <h1>Infinix Note 40 Pro+</h1>
                     <p>AED 879.55</p>
                 </div>
 
                 <div class="product-card" onclick="openModal(7)">
-                    <img src="ph20.png" alt="phone1">
+                    <img src="assets/images/ph20.png" alt="phone1">
                     <h1>Xiaomi Redmi Note 14</h1>
                     <p>AED 995</p>
                 </div>
@@ -334,7 +332,6 @@
             <!-- Creating a place holder Content for the modals, we will initialize it in side our Script tag-->
             <div id="modal" class="modal-overlay">
                     <div class="modal-content-card">
-                        <button type="button" id="closeBtn" class="close-btn">x</button>
                         
                         <img id="modalImage" src="ph1.png" alt="phone1">
                         
@@ -370,7 +367,7 @@
             <script>
 
                 const products = [ { 
-                            image: "ph13.png",
+                            image: "assets/images/ph13.png",
                             name: "Nothing Phone (3)", 
                             price: "2,899", 
                             paragraph: "With its eye-catching Glyph Matrix LED interface, the Nothing Phone (3) fuses creative flair with serious performance, powered by Snapdragon 8s Gen 4", 
@@ -384,7 +381,7 @@
                             }
                         },
                         { 
-                            image: "ph14.png",
+                            image: "assets/images/ph14.png",
                             name: "Oppo Reno 14 Pro", 
                             price: "2,449", 
                             paragraph: "The Reno 14 Pro 5G delivers a refined visual experience with its curved high-refresh screen, versatile triple-camera system, and a long-lasting 6,200 mAh battery", 
@@ -398,7 +395,7 @@
                             }
                         },
                         { 
-                            image: "ph15.png",
+                            image: "assets/images/ph15.png",
                             name: "Motorola Razr 60 Ultra", 
                             price: "3,499", 
                             paragraph: "This high-end flip phone combines a smooth, ultra-fast 165 Hz pOLED display with powerful performance (Snapdragon 8 Elite) and premium multi-lens cameras", 
@@ -412,7 +409,7 @@
                             }
                         },
                         { 
-                            image: "ph16.png",
+                            image: "assets/images/ph16.png",
                             name: "Motorola G35", 
                             price: "1499", 
                             paragraph: "The G35 5G packs a 120 Hz display and a large 50 MP camera into a budget-friendly, stylish package, perfect for users who want a reliable 5G phone with good performance", 
@@ -426,7 +423,7 @@
                             }
                         },
                         { 
-                            image: "ph17.png",
+                            image: "assets/images/ph17.png",
                             name: "Samsung Galaxy Z Flip7", 
                             price: "2,943", 
                             paragraph: "The Z Flip7 gives you a premium folding smartphone experience and a full-size screen that folds into your pocket, 5G performance, and a solid camera setup.", 
@@ -440,7 +437,7 @@
                             }
                         },
                         { 
-                            image: "ph18.png",
+                            image: "assets/images/ph18.png",
                             name: "Infinix HOT 50 Pro", 
                             price: "635.55", 
                             paragraph: "The HOT 50 Pro is perfect if you want a budget-friendly phone with large storage for apps, photos, and media and all in a lightweight, sleek black body with smooth performance over 4G.", 
@@ -454,7 +451,7 @@
                             }
                         },
                         { 
-                            image: "ph19.png",
+                            image: "assets/images/ph19.png",
                             name: "Infinix Note 40 Pro+", 
                             price: "879.55", 
                             paragraph: "The Note 40 Pro+ is built for power users and creators as it offers lightning-fast charging, a big and smooth display, strong 5G performance, and a super-high-resolution 108 MP camera.", 
@@ -468,7 +465,7 @@
                             }
                         },  
                         {   
-                            image: "ph20.png",
+                            image: "assets/images/ph20.png",
                             name: "Xiaomi Redmi Note 14 Pro", 
                             price: "995", 
                             paragraph: "The Redmi Note 14 Pro is a feature-packed mid-range smartphone offering a stunning 6.67'' AMOLED display, a powerful 200 MP AI camera system, and smooth performance with the Dimensity 7300 Ultra chip", 
