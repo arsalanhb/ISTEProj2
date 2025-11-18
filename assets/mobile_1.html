@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store | Orange.com</title>
+
+
+    <style>
+        /* This is for the Header, Nav, Aside, Main - Didn't make root variables */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 25vh;
+            background-color: orange    ;
+
+        }
+
+        nav ul{
+
+            display: flex;
+            flex-direction: row;
+            gap: 3rem;
+
+            justify-content: center;
+            align-items: center;
+
+            height: 10vh;
+            background-color: gray;
+        }
+
+        nav ul li{
+            list-style: none;
+        }
+
+        nav ul li a{
+            text-decoration: none;
+        }
+
+        div.content{
+            
+            display: flex;
+            gap: 3rem;
+
+            line-height: 1.5;
+
+            font-size: 1.5rem;
+
+            margin-top: 3rem;
+            margin-left: 3rem;
+
+        }
+
+        aside{
+            width: 20vw;
+            height: auto;
+            background-color: ;
+            text-align: center;
+
+            border-radius: 1rem;
+            border: solid 1px black;
+
+        }
+        aside p{
+            text-align: center;
+            
+        }
+
+        aside h3{
+            font-size:2rem;
+        }
+
+        footer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 15vh;
+            margin-top: 3rem;
+            background-color: orange;
+
+            flex-wrap: wrap;
+        }
+
+/* The Products page styling (main)------------------------------------------------------------------------------ */
+
+            main h3{
+                padding-left: 0.75rem;
+            }
+
+
+            .product-box{
+                display: grid;
+                grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+                gap: 3rem 1.5rem;
+                padding: 1rem;
+
+                margin-right: 1rem;
+            }
+
+            .product-card{
+
+                background-color: rgb(233, 233, 233);
+                border-radius: 5px;
+                width: 17vw;
+                height: 50vh;
+
+                text-align: center;
+            
+            }
+
+            .modal-overlay{
+                position: fixed;
+                display: none;
+
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);  /* Darkening the background overlay */
+                    
+                justify-content: center;
+                align-items: center;
+                    
+                z-index: 1000;
+
+            }
+
+            .modal-overlay.active{
+                display: flex;
+            }
+
+            .modal-content-card {
+                background-color: white;
+                border-radius: 12px;
+                padding: 40px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .close-btn{
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+                cursor: pointer;
+                background: none;
+                border: none;
+                color: #666;
+            }           
+            .close-btn:hover {
+                color: #333;
+            }
+
+            .modal-overlay img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                margin: 0 auto 20px;
+                display: block;
+            }
+
+            .modal-name h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .modal-price p {
+                font-size: 24px;
+                color: #4CAF50;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .modal-paragraph p {
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 20px;
+            }
+
+            .modal-features ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .modal-features li {
+                padding: 8px 0;
+                color: #555;
+                border-bottom: 1px solid #eee;
+            }
+
+            .add-to-cart {
+                width: 100%;
+                padding: 15px;
+                background-color: orange;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
+            .add-to-cart:hover {
+                background-color: #ff8c00;
+            }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="ORANGE" width="200" height="200">
+        <p>PLACEHOLDER</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>PLACEHOLDER</a></li>
+            <li><a>NOTE:THERE MIGHT BE MORE LINKS</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- We are wrapping the main content and side bar, because we don't use float. -->
+        
+        <aside>
+            <h3>More Stuff(?)</h3>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+            <p> PLACEHOLDER </p>
+
+        </aside>
+
+        <main>
+           
+            <h3>Mobiles</h3>
+
+            <div class="product-box">
+                
+                <div class="product-card" onclick="openModal(0)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>Apple iPhone 17 Pro Max</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(1)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>Apple iPhone 17 Pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(2)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>Apple iPhone 17 Pro Max Silver</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(3)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(4)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                <div class="product-card" onclick="openModal(5)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(6)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(7)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(8)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(9)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(10)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>iPhone 15 pro</h1>
+                    <p>AED 5000</p>
+                </div>
+
+                
+                <div class="product-card" onclick="openModal(11)">
+                    <img src="p1.png" alt="phone1">
+                    <h1>Huawei Pura 80 Ultra Golden</h1>
+                    <p>AED 5000</p>
+                </div>
+            </div>
+
+            <div id="modal" class="modal-overlay">
+                    <div class="modal-content-card">
+                        <button type="button" id="closeBtn" class="close-btn">x</button>
+                        
+                        <img id="modalImage" src="ph1.png" alt="phone1">
+                        
+                        <div id="modalName" class="modal-name">
+                            <h1>iPhone 15 pro</h1>
+                        </div>
+
+                        <div id="modalPrice" class="modal-price">
+                            <p>AED 5000</p>
+                        </div>
+
+                        <div id="modalParagraph" class="modal-paragraph">
+                            <p>paragraph</p>
+                        </div>
+                        
+                        <div id="modalFeatures" class="modal-features">
+                        <ul>
+                            <p>Other Features</p>
+                            <li>RAM: 12 GB</li>
+                            <li>Screen Size: 6.9 in</li>
+                            <li>OS Version: iOS 26</li>
+                            <li>CPU: 6‑core CPU</li>
+                        </ul>
+                        </div>
+
+                        <button type="button" id="addToCart" class="add-to-cart">Add to Cart</button>
+                    </div>
+            </div>
+
+            <script>
+
+                const products = [
+                                {
+                                image: "ph1.png",
+                                name: "Apple iPhone 17 Pro Max", price: "5,099", paragraph:"The iPhone Air blends a feather-light titanium frame with Apple’s A19 Pro performance and a bright 6.5'' ProMotion OLED", features: {
+                                color:"Cosmic Orange",
+                                internalMemory:  "256 GB",
+                                ram: "12 GB",
+                                screenSize: "6.9 in",
+                                osVersion: "iOS 26",
+                                cpu: "6‑core CPU",
+                                
+                            }},
+                                { 
+                                image: "ph1.png",
+                                name: "Apple iPhone 17 Pro Max", 
+                                price: "5,099", 
+                                paragraph: "The iPhone Air blends a feather-light titanium frame with Apple's A19 Pro performance and a bright 6.5'' ProMotion OLED", 
+                                features: {
+                                    color: "Natural Titanium",
+                                    internalMemory: "256 GB",
+                                    ram: "12 GB",
+                                    screenSize: "6.9 in",
+                                    osVersion: "iOS 26",
+                                    cpu: "6‑core CPU"
+                                }
+                            },                 
+                             { 
+                                image: "ph1.png",
+                                name: "Apple iPhone 17 Pro Max Silver", 
+                                price: "8,499", 
+                                paragraph: "The 16 Plus offers a large, smooth display and the 48MP Fusion camera for high-res shots", 
+                                features: {
+                                    color: "Silver",
+                                    internalMemory: "2 TB",
+                                    ram: "12 GB",
+                                    screenSize: "6.9 in",
+                                    osVersion: "iOS 26",
+                                    cpu: "6‑core CPU"
+                                }
+                            },
+                            { 
+                                image: "ph1.png",
+                                name: "Apple iPhone Air", 
+                                price: "5,999", 
+                                paragraph: "6.5-inch Super Retina XDR OLED display with adaptive 120Hz refresh. Built for Apple Intelligence with advanced AI-powered features.", 
+                                features: {
+                                    color: "Light Gold",
+                                    internalMemory: "1 TB",
+                                    ram: "8 GB",
+                                    screenSize: "6.5 in",
+                                    osVersion: "iOS 26",
+                                    cpu: "6‑core CPU"
+                                }
+                            },
+                            { 
+                                image: "ph1.png",
+                                name: "Apple iPhone Air Space Black", 
+                                price: "5,149", 
+                                paragraph: "The iPhone Air combines a titanium frame with lightweight build and powerful A-series performance, making it an elegant and efficient choice for users who care about style without sacrificing speed.", 
+                                features: {
+                                    color: "Space Black",
+                                    internalMemory: "512 GB",
+                                    ram: "8 GB",
+                                    screenSize: "6.5 in",
+                                    osVersion: "iOS 26",
+                                    cpu: "6‑core CPU"
+                                }
+                            },
+                            { 
+                                image: "ph1.png",
+                                name: "Apple iPhone 16 Pro Max", 
+                                price: "5,399", 
+                                paragraph: "The 16 Pro Max in Desert Titanium is built for creators and power users its large, fluid display and pro-level triple-camera setup make it perfect for photography, video, and demanding workflows.", 
+                                features: {
+                                    color: "Desert Titanium",
+                                    internalMemory: "512 GB",
+                                    ram: "8 GB",
+                                    screenSize: "6.9 in",
+                                    osVersion: "iOS 18",
+                                    cpu: "6‑core CPU"
+                                }
+                            },
+
+                            { 
+                            image: "ph1.png",
+                            name: "Apple iPhone 16 Plus", 
+                            price: "4,199", 
+                            paragraph: "With its large 6.7\" display and powerful A18 chip, the iPhone 16 Plus delivers a compelling balance of screen real estate, smooth performance, and long battery life", 
+                            features: {
+                                color: "Ultramarine",
+                                internalMemory: "256 GB",
+                                ram: "6 GB",
+                                screenSize: "6.7 in",
+                                osVersion: "iOS 18",
+                                cpu: "6‑core CPU"
+                            }
+                        },
+                        { 
+                            image: "ph1.png",
+                            name: "Samsung Galaxy S25 Ultra", 
+                            price: "3,099", 
+                            paragraph: "The S25 Ultra delivers cutting-edge imaging, big battery life, and a buttery adaptive display", 
+                            features: {
+                                color: "Titanium Whitesilver",
+                                internalMemory: "256 GB",
+                                ram: "12 GB",
+                                screenSize: "6.9 in",
+                                osVersion: "Android 12, 4.1.1",
+                                cpu: "Octa-core"
+                            }
+                        },
+                        { 
+                            image: "ph1.png",
+                            name: "Samsung Galaxy S25+", 
+                            price: "3,500", 
+                            paragraph: "The S25+ balances a large, vibrant screen with top-tier performance and AI camera enhancements — a solid choice if you want flagship features without the Ultra price tag.", 
+                            features: {
+                                color: "Navy",
+                                internalMemory: "256 GB",
+                                ram: "12 GB",
+                                screenSize: "6.7 in",
+                                osVersion: "Android 12, 4.1.1",
+                                cpu: "Octa-core"
+                            }
+                        },
+                        { 
+                            image: "ph1.png",
+                            name: "Samsung Galaxy Z Fold 4", 
+                            price: "7,249", 
+                            paragraph: "The Z Fold4 transforms between phone and tablet layouts for multitasking and large-screen productivity", 
+                            features: {
+                                color: "Green",
+                                internalMemory: "512 GB",
+                                ram: "12 GB",
+                                screenSize: "7.6 in",
+                                osVersion: "Android 12, 4.1.1",
+                                cpu: "Octa-Core 3.19 GHz"
+                            }
+                        },
+                        { 
+                            image: "ph1.png",
+                            name: "Huawei Pura 80 Ultra", 
+                            price: "5,099", 
+                            paragraph: "The Pura 80 Ultra focuses on photography with large sensors and a periscope zoom, combined with massive RAM and storage for power users and mobile photographers", 
+                            features: {
+                                color: "Prestige Gold",
+                                internalMemory: "512 GB",
+                                ram: "16 GB",
+                                screenSize: "6.8 in",
+                                osVersion: "EMUI 15.0",
+                                cpu: "Octa-Core"
+                            }
+                        },
+                        { 
+                            image: "ph1.png",
+                            name: "Huawei Pura 80 Ultra Golden Black", 
+                            price: "4,199", 
+                            paragraph: "Designed for photography lovers, the Pura 80 Ultra combines a massive 1-inch sensor for high dynamic range with dual telephoto lenses for flexible zoom, while also offering fast charging.", 
+                            features: {
+                                color: "Golden Black",
+                                internalMemory: "512 GB",
+                                ram: "16 GB",
+                                screenSize: "6.8 in",
+                                osVersion: "EMUI 15.0",
+                                cpu: "Octa-Core"
+                            }
+                        }
+
+                      ];
+
+                const modal = document.getElementById("modal");
+                const closeBtn = document.getElementById("closeBtn");
+
+                function openModal(productIndex){
+                    const product = products[productIndex];
+
+                    document.getElementById('modalImage').src = product.image;
+                    document.getElementById('modalImage').alt = product.name;
+
+                    document.getElementById('modalName').textContent = product.name;
+                    document.getElementById('modalPrice').textContent = 'AED ' + product.price;
+                    document.getElementById('modalParagraph').textContent = product.paragraph;
+                    //document.getElementById('modalFeatures').textContent = product.features;
+
+                    const featuresHTML = `
+                        <ul>
+                            <p>Other Features</p>
+                            <li>Color: ${product.features.color}</li>
+                            <li>Internal Memory: ${product.features.internalMemory}</li>
+                            <li>RAM: ${product.features.ram}</li>
+                            <li>Screen Size: ${product.features.screenSize}</li>
+                            <li>OS Version: ${product.features.osVersion}</li>
+                            <li>CPU: ${product.features.cpu}</li>
+                            
+                        </ul>`;
+
+                    document.getElementById('modalFeatures').innerHTML = featuresHTML;
+                    
+
+                    modal.classList.add('active');
+
+                }
+            closeBtn.onclick = function() {
+                    modal.classList.remove('active');
+                    }
+
+            </script>
+        </main>
+
+    </div>
+    <footer>
+        &copy; 2025 Project2
+    </footer>
+</body>
+</html>
